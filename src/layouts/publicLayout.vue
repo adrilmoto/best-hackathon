@@ -1,51 +1,60 @@
 <template lang="pug">
   q-layout(view="lHh Lpr lFf" @scroll="handleScroll" style=`position: relative`).full-width
-    q-dialog(v-model="showAccountModal")
-      div(style=`maxWidth: 340px; width: 100%`).column.bg-white
-        //- header
-        div(style=`height: 50px`).row.full-width.items-center.justify-center
-          .col
-            .row.fit.items-center.justify-center
-              span.text-semibold ВХОД В ЛИЧНЫЙ КАБИНЕТ
-          //- close btn
-          div(@click="$wait(300).then(() => showAccountModal = false)"
-            style=`width: 50px; height: 50px; border-radius: 5px` v-ripple="{color: 'primary'}"
-            ).row.items-center.justify-center.cursor-pointer.relative-position
-            q-icon(name="clear" color="primary" size="25px")
-        //- name
-        // body
-        .col.scroll.q-pb-xl.q-px-xl
-          q-input(placeholder="Номер телефона" filled v-model="name").full-width
-          q-btn(label="Войти"
-            @click="accountLogin" :loading="accountLoginLoading"
-            color="light-green-7" style=`height: 60px; borderRadius: 7px`
-            push no-caps).full-width.q-mt-md
     //- right drawer
-    q-drawer(side="right" behavior="mobile" v-model="showRightDrawer" style="zIndex: 2000")
+    q-drawer(side="right" behavior="mobile" v-model="showRightDrawer" style="zIndex: 30000")
       .column.fit
         //- header
         div(style=`height: 80px; borderBottom: 1px solid #eee`).row.full-width.items-center.content-center.q-px-md
-          h6 {{ $store.state.main.config.info.site_name }}
+          div(style=`` @click="$router.push(`/`)").row.neon_mini.items-center.cp
+            div(style=`width: 50px; height: 50px; font-family: Russo One`).logo_menu.q-mr-xs
+            .col
+              div.neon_text
+                span HACKATHON
+              .row
+              div.neon_text
+                span BEST URFU 2019
         //- routes
         .col.scroll
           div(
             v-for="(m, mi) in $store.state.main.routes.home" :key="m._id"
             style=`height: 50px; borderBottom: 1px solid #eee; text-decoration: none`
             ).row.full-width.items-center.content-center
-            a(:href="'#'+m._id" v-smooth-scroll="{ duration: 1000, offset: -50, container: '' }"
-              @click="$root.$emit('toggleRightDrawer')" v-ripple=`{color: '#eee'}`
-              style="text-decoration: none").row.fit.items-center.relative-position.cursor-pointer.q-px-md
-              span.text-black {{ m.name }}
-          div(@click="$router.push('/payment')"
-            style=`height: 50px; text-decoration: none`).row.full-width.items-center.q-px-md.cursor-pointer.hr
-            span.text-black Договор-оплата
+            a(:href="'#'+m._id" v-smooth-scroll="{ duration: 1000, offset: -50, container: '' }" style=`text-decoration: none`).row.items-center.relative-position.full-width
+              q-btn(@click="$router.push('/')" :label="m.name" style=`font-family: Russo One` v-ripple="{color: 'primary'}" size="lg" flat).q-ma-xs.menu_button.full-width
+          div(style=`borderBottom: 1px solid #eee;`).row.items-center.relative-position
+            q-btn(@click="$router.push('/contacts')" label="Контакты" style=`font-family: Russo One` v-ripple="{color: 'primary'}" size="lg" flat).q-ma-xs.menu_button.full-width
+          div(style=`borderBottom: 1px solid #eee;`).row.items-center.relative-position
+            q-btn(@click="$router.push('/partners')" label="Партнерам" style=`font-family: Russo One` v-ripple="{color: 'primary'}" size="lg" flat).q-ma-xs.menu_button.full-width
+          div(style=`borderBottom: 1px solid #eee;`).row.items-center.relative-position
+            q-btn(@click="$router.push('/faq')" label="Faq" style=`font-family: Russo One` v-ripple="{color: 'primary'}" size="lg" flat).q-ma-xs.menu_button.full-width
+          div(style=``).row.items-center.relative-position.justify-center.q-mt-md
+            q-btn(label="Регистрация"
+              @click="" flat style=`font-family: Russo One; maxWidth: 250px; width:100%; height: 50px; border-radius: 50px; background-image: linear-gradient(139deg, #00FFF3, #00D2C9, #009992, #00706A, #004643);`).q-ma-xs
           //- div(style=`height: 50px`).row.full-width.items-center.content-center.q-pa-md
             q-btn(flat color="light-green-7" icon="perm_identity" style=`padding: 0px` @click="accountLogin" :loading="accountLoginLoading") войти в личный кабинет
         //- footer
         div(style=`height: 50px`).row.full-width.items-center.q-px-md
           small.text-black © {{ $store.state.main.config.info.site_name }} {{ $store.state.main.config.info.year_of_foundation }}-{{new Date().getFullYear()}}
-    p-menu
+    q-header(:reveal-offset="500" style=`background: #fff; z-index: 2200;`)
+      p-menu(style=`z-index: 1111`)
     q-page-container
+      vue-particles(
+        color="#dedede"
+        :particleOpacity="0.7"
+        :particlesNumber="80"
+        shapeType="circle"
+        :particleSize="4"
+        linesColor="#dedede"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.4"
+        :linesDistance="150"
+        :moveSpeed="3"
+        :hoverEffect="true"
+        hoverMode="bubble"
+        :clickEffect="true"
+        clickMode="repulse"
+    :style=`{position: 'fixed', zIndex: '2', paddingBottom: '65px',marginTop:$q.screen.gt.sm ? '150px' : '200px', width: '100%'}`).row.window-height.justify-center.full-width.bg-black
       router-view
     p-footer
 </template>
@@ -73,7 +82,7 @@ export default {
       showRightDrawer: false,
       blackMenu: false,
       name: '',
-      siteName: 'Скарн - найм жилья без посредников',
+      siteName: 'HACKATHON BEST URFU 2019',
       ddd: `
       
       `
@@ -100,10 +109,30 @@ export default {
     this.$root.$on('toggleRightDrawer', (e) => {
       this.showRightDrawer = !this.showRightDrawer
     })
+  },
+  computed: {
+    main () {
+      return this.$route.path === '/'
+    }
   }
 }
 </script>
 
 <style lang="stylus">
-
+.neon_mini
+  font-family: Russo One;
+  // position: absolute;
+  transform: skewY(deg);
+  transform: translate(-50% -50%);
+  // border: 1px solid #fff;
+  // border-radius: 10px
+  // box-shadow: 0 0 5px #009992,  0 0 15px #009992, inset 0 0 5px #009992, inset 0 0 15px #009992;
+  animation: animate 0s linear infinite;
+.neon_text
+  margin: 0;
+  padding: 0;
+  font-size: 1rem
+  line-height: 20px;
+  color: #009992;
+  // text-shadow: 0 0 5px #009992, 0 0 10px #009992
 </style>

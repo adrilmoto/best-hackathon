@@ -19,23 +19,25 @@ export default {
       }
     },
     info: {
-      title: 'Скарн - найм жилья без посредников',
+      title: '',
       org_inn: '',
       org_phone: '',
       org_email_sales: '',
       org_email_support: '',
-      site_name: 'Скарн',
-      year_of_foundation: '2011',
-      phone: '+7 (343) 266 45 98'
+      site_name: 'Hackthon',
+      year_of_foundation: '',
+      phone: ''
     }
   },
   routes: {
     home: [
-      { _id: 'about', name: 'О компании' },
-      { _id: 'advantage', name: 'Преимущества' },
-      { _id: 'reviews', name: 'Отзывы' },
-      { _id: 'partners', name: 'Партнеры' },
-      { _id: 'contacts', name: 'Контакты' }
+      { _id: 'second', name: 'О хакатоне' },
+      { _id: 'shedule', name: 'Расписание' },
+      { _id: 'directions', name: 'Направления' }
+      // { _id: 'contacts', name: 'Контакты' }
+      // { path: 'partners', name: 'Партнерам' },
+      // { path: 'faq', name: 'FAQ' },
+      // { path: 'reg', name: 'Регистрация' }
     ],
     account: []
   }
