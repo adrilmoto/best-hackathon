@@ -9,8 +9,8 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev -m spa",
-    "build": "quasar build -m spa",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider quasar build -m spa",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider quasar dev -m spa",
     "start": "node index.js",
     "sldkfmslkdfm": "npm install -g @quasar/cli",
     "heroku-postbuild": "yarn && yarn build",
@@ -46,10 +46,12 @@
     "vue2-smooth-scroll": "^1.0.5",
     "vuejs-countdown": "^0.2.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cross-env": "^10.1.0"
+  },
   "engines": {
-    "node": "10.x",
-    "npm": ">= 5.6.0",
+    "node": "18.x",
+    "npm": ">= 7.0.0",
     "yarn": ">= 1.6.0"
   },
   "browserslist": [
