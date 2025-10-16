@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import sFaq from 'components/sections/sFAQ'
+import sFaq from 'components/sections/sFaq'
 export default {
   name: 'faqPage',
   components: { sFaq },

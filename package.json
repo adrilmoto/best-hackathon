@@ -9,8 +9,8 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue src",
     "test": "echo \"No test specified\" && exit 0",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider quasar build -m spa",
-    "dev": "NODE_OPTIONS=--openssl-legacy-provider quasar dev -m spa",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider quasar build -m spa",
+    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider quasar dev -m spa",
     "start": "node index.js",
     "sldkfmslkdfm": "npm install -g @quasar/cli",
     "heroku-postbuild": "yarn && yarn build",
@@ -47,10 +47,13 @@
     "vuejs-countdown": "^0.2.1"
   },
   "devDependencies": {
-    "cross-env": "^10.1.0"
+    "cross-env": "^10.1.0",
+    "@quasar/cli": "^1.0.0",
+    "sass": "^1.70.0",
+    "sass-loader": "^10.1.1"
   },
   "engines": {
-    "node": "18.x",
+    "node": "22.x",
     "npm": ">= 7.0.0",
     "yarn": ">= 1.6.0"
   },
@@ -61,5 +64,10 @@
   ],
   "resolutions": {
     "ajv": "6.8.1"
+  },
+  "overrides": {
+    "zlib": "npm:browserify-zlib@^0.2.0"
+    ,
+    "node-sass": "npm:sass@^1.70.0"
   }
 }

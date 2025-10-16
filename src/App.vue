@@ -54,7 +54,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
 .benefits
-  background-image: url("~assets/benefits_bg.svg");
+  background-image: url("~assets/Benefits_bg.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
